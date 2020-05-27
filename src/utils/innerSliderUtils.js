@@ -569,7 +569,8 @@ export const getTrackCSS = spec => {
   const trackChildren = spec.slideCount + 2 * spec.slidesToShow;
   if (!spec.vertical) {
     trackWidth =
-      spec.slideCount > spec.slidesToShow
+        (spec.centerMode && spec.slideCount >= spec.slidesToShow)
+        || spec.slideCount > spec.slidesToShow
         ? getTotalSlides(spec) * spec.slideWidth
         : spec.listWidth;
   } else {
@@ -760,7 +761,7 @@ export const getPreClones = spec => {
   if (spec.variableWidth) {
     return spec.slideCount;
   }
-  return spec.slidesToShow + (spec.centerMode ? 1 : 0);
+  return spec.centerMode && spec.slidesToShow === spec.slideCount ? spec.slidesToShow : spec.slidesToShow + (spec.centerMode ? 1 : 0);
 };
 
 export const getPostClones = spec => {

@@ -137,12 +137,12 @@ const renderSlides = spec => {
     if (
       spec.infinite &&
       spec.fade === false &&
-      childrenCount > spec.slidesToShow
+      ((spec.centerMode && (childrenCount >= spec.slidesToShow))
+      || (!spec.centerMode && (childrenCount > spec.slidesToShow)))
     ) {
       let preCloneNo = childrenCount - index;
       if (
-        preCloneNo <= getPreClones(spec) &&
-        childrenCount !== spec.slidesToShow
+        preCloneNo <= getPreClones(spec)
       ) {
         key = -preCloneNo;
         if (key >= startIndex) {
@@ -167,7 +167,8 @@ const renderSlides = spec => {
         );
       }
 
-      if (childrenCount > spec.slidesToShow) {
+      if ((spec.centerMode && (childrenCount >= spec.slidesToShow))
+          || (!spec.centerMode && (childrenCount > spec.slidesToShow))) {
         key = childrenCount + index;
         if (key < endIndex) {
           child = elem;

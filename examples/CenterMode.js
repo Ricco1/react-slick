@@ -7,7 +7,7 @@ export default class CenterMode extends Component {
       className: "center",
       centerMode: true,
       infinite: true,
-      centerPadding: "-200px",
+      centerPadding: -800,
       slidesToShow: 3,
       speed: 500
     };
@@ -24,15 +24,9 @@ export default class CenterMode extends Component {
           <div>
             <h3>3</h3>
           </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+          {/*<div>*/}
+          {/*  <h3>4</h3>*/}
+          {/*</div>*/}
         </Slider>
       </div>
     );
