@@ -102,8 +102,6 @@ export const initializedState = spec => {
   let listWidth = Math.ceil(getWidth(ReactDOM.findDOMNode(spec.listRef)));
   let trackWidth = Math.ceil(getWidth(ReactDOM.findDOMNode(spec.trackRef)));
   let slideWidth;
-
-  console.log(spec)
   if (!spec.vertical) {
     let centerPaddingAdj = spec.centerMode && parseInt(spec.centerPadding) * 2;
     if (
