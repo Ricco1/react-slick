@@ -1904,6 +1904,7 @@ var initializedState = function initializedState(spec) {
   var listWidth = Math.ceil(getWidth(react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(spec.listRef)));
   var trackWidth = Math.ceil(getWidth(react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(spec.trackRef)));
   var slideWidth;
+  console.log(spec);
 
   if (!spec.vertical) {
     var centerPaddingAdj = spec.centerMode && parseInt(spec.centerPadding) * 2;
@@ -1912,7 +1913,7 @@ var initializedState = function initializedState(spec) {
       centerPaddingAdj *= listWidth / 100;
     }
 
-    slideWidth = Math.ceil((listWidth - centerPaddingAdj) / spec.slidesToShow);
+    slideWidth = spec.slidesToShow === spec.children.length ? (listWidth - centerPaddingAdj) / spec.slidesToShow : Math.ceil((listWidth - centerPaddingAdj) / spec.slidesToShow);
   } else {
     slideWidth = listWidth;
   }
