@@ -9,7 +9,8 @@
     "react/prop-types": 0,
     "react/no-find-dom-node": 0,
     "react/display-name": 0,
-    "no-console": 0
+    "no-console": 0,
+    "no-prototype-builtins": 0
   },
   "env": {
     "node": true,
