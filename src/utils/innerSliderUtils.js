@@ -102,6 +102,8 @@ export const initializedState = spec => {
   let listWidth = Math.ceil(getWidth(ReactDOM.findDOMNode(spec.listRef)));
   let trackWidth = Math.ceil(getWidth(ReactDOM.findDOMNode(spec.trackRef)));
   let slideWidth;
+
+  console.log(spec)
   if (!spec.vertical) {
     let centerPaddingAdj = spec.centerMode && parseInt(spec.centerPadding) * 2;
     if (
@@ -110,7 +112,7 @@ export const initializedState = spec => {
     ) {
       centerPaddingAdj *= listWidth / 100;
     }
-    slideWidth = Math.ceil((listWidth - centerPaddingAdj) / spec.slidesToShow);
+    slideWidth = spec.slidesToShow === spec.children.length ? (listWidth - centerPaddingAdj) / spec.slidesToShow : Math.ceil((listWidth - centerPaddingAdj) / spec.slidesToShow);
   } else {
     slideWidth = listWidth;
   }

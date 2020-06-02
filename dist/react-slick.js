@@ -541,11 +541,7 @@ function (_React$Component) {
       Array.prototype.forEach.call(document.querySelectorAll(".slick-slide"), function (slide) {
         slide.onfocus = _this.props.pauseOnFocus ? _this.onSlideFocus : null;
         slide.onblur = _this.props.pauseOnFocus ? _this.onSlideBlur : null;
-      }); // To support server-side rendering
-
-      if (!window) {
-        return;
-      }
+      });
 
       if (window.addEventListener) {
         window.addEventListener("resize", _this.onWindowResized);
@@ -580,6 +576,8 @@ function (_React$Component) {
       if (_this.autoplayTimer) {
         clearInterval(_this.autoplayTimer);
       }
+
+      _this.ro.disconnect();
     });
 
     _defineProperty(_assertThisInitialized(_this), "UNSAFE_componentWillReceiveProps", function (nextProps) {
@@ -775,7 +773,8 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "checkImagesLoad", function () {
-      var images = document.querySelectorAll(".slick-slide img");
+      var images = _this.list.querySelectorAll(".slick-slide img");
+
       var imagesCount = images.length,
           loadedCount = 0;
       Array.prototype.forEach.call(images, function (image) {
@@ -1927,10 +1926,10 @@ var initializedState = function initializedState(spec) {
   }
 
   var lazyLoadedList = spec.lazyLoadedList || [];
-  var slidesToLoad = getOnDemandLazySlides({
+  var slidesToLoad = getOnDemandLazySlides(_objectSpread({}, spec, {
     currentSlide: currentSlide,
     lazyLoadedList: lazyLoadedList
-  }, spec);
+  }));
   lazyLoadedList.concat(slidesToLoad);
   var state = {
     slideCount: slideCount,
@@ -2710,7 +2709,6 @@ var getSlideStyle = function getSlideStyle(spec) {
 
     style.opacity = spec.currentSlide === spec.index ? 1 : 0;
     style.transition = "opacity " + spec.speed + "ms " + spec.cssEase + ", " + "visibility " + spec.speed + "ms " + spec.cssEase;
-    style.WebkitTransition = "opacity " + spec.speed + "ms " + spec.cssEase + ", " + "visibility " + spec.speed + "ms " + spec.cssEase;
   }
 
   return style;
