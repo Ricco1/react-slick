@@ -97,10 +97,6 @@ export class InnerSlider extends React.Component {
         slide.onblur = this.props.pauseOnFocus ? this.onSlideBlur : null;
       }
     );
-    // To support server-side rendering
-    if (!window) {
-      return;
-    }
     if (window.addEventListener) {
       window.addEventListener("resize", this.onWindowResized);
     } else {
@@ -126,6 +122,7 @@ export class InnerSlider extends React.Component {
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
     }
+    this.ro.disconnect();
   };
   UNSAFE_componentWillReceiveProps = nextProps => {
     let spec = {
@@ -295,7 +292,7 @@ export class InnerSlider extends React.Component {
     });
   };
   checkImagesLoad = () => {
-    let images = document.querySelectorAll(".slick-slide img");
+    let images = this.list.querySelectorAll(".slick-slide img");
     let imagesCount = images.length,
       loadedCount = 0;
     Array.prototype.forEach.call(images, image => {
